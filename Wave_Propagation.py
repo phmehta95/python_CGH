@@ -1,7 +1,8 @@
 import numpy as np
 import matplotlib.pyplot as plt
 import math
-
+import sys
+np.set_printoptions(threshold=sys.maxsize)
 
 #Simulates ability of function_propagate to simulate the propagation of complex wave fields
 #Original code by Nicholas Pegard @UNC, this is a re-write in python (for people who don't have access to a MATLAB license)
@@ -32,3 +33,8 @@ uy = uy*ps
 uy = 1000*(uy-np.mean(uy))
 
 print(uy)
+#Create 2D grid of above vectors
+xx,yy = np.meshgrid(ux,uy)
+print(xx,yy)
+
+#Import a test image
