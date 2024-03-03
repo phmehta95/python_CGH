@@ -3,7 +3,8 @@ import matplotlib.pyplot as plt
 import math
 import sys
 np.set_printoptions(threshold=sys.maxsize)
-
+import function_input
+from function_input import function_greylevel
 #Simulates ability of function_propagate to simulate the propagation of complex wave fields
 #Original code by Nicholas Pegard @UNC, this is a re-write in python (for people who don't have access to a MATLAB license)
 
@@ -38,3 +39,23 @@ xx,yy = np.meshgrid(ux,uy)
 print(xx,yy)
 
 #Import a test image
+Image = function_greylevel("Image1.jpg")
+Image = np.resize(Image,(lx,ly))
+Image = -Image
+
+print(Image)
+
+
+#Creating complex field by setting amplitude and phase
+Amplitude = np.sqrt(Image)
+#Select one of the options below for phase of wavefunction
+Phase = np.zeros(lx,ly)
+#Phase = 2*np.pi*rand(lx,ly)
+
+ComplexField = Amplitude * np.exp(1j*Phase)
+
+#Display Amplitude and Phase at z = 0
+#Create a figure and define subplots
+fig,ax = plt.subplots(1,3,figsize=(15,5))
+
+#Plot the intensity

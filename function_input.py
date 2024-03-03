@@ -17,10 +17,12 @@ def function_greylevel(pathimage):
     #Subtract background
     img = img - img.min()
     img = img/img.max()
+    #Invert greyscale
     img = 1-img
     img = img/img.sum()
     img = np.matrix.transpose(img)
-#    print (img)
+    return img
+#    print (type(img))
 #    int8_img = img.astype(np.uint8)
 #    int8_img = Image.fromarray(int8_img)
 #    int8_img.save("greylevel_img.png")
