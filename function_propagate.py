@@ -1,0 +1,36 @@
+import sys
+import numpy as np
+import matplotlib.pyplot as plt
+np.set_printoptions(threshold = sys.maxsize)
+from PIL import Image
+import PIL
+from matplotlib import pyplot as plt
+from matplotlib import image as mpimg
+
+#Defining the function for propagating the wavefunction
+
+def function_propagate(field1,lambda_val,z,psx,psy):
+    M, N = field1.shape
+
+    if M % 2 == 1:
+        UY = np.arange(1, M + 1) - np.mean(np.arange(1, M + 1)) - 1
+    else:
+        UY = np.arange(1, M + 1) - np.mean(np.arange(1, M + 1)) - 0.5
+
+    if N % 2 == 1:
+        UX = np.arange(1, N + 1) - np.mean(np.arange(1, N + 1)) - 1
+    else:
+        UX = np.arange(1, N + 1) - np.mean(np.arange(1, N + 1)) - 0.5
+
+    x, y = np.meshgrid(UX, UY)
+    kx = x / psx / N
+    ky = y / psy / M
+
+    H = np.exp(-1j * np.pi * lambda_val * z * (kx**2 + ky**2))
+    H = np.fft.fftshift(H)
+
+    objFT = np.fft.fft2(field1)
+    field2 = np.fft.ifft2(objFT * H)
+
+    return field2
+
