@@ -23,36 +23,39 @@ print(ps)
 lx = 300
 ly = 300
 #Propoagation distance of wave in meters in 1cm increments
-prop_dist = np.linspace(0,0.01,20)
+prop_dist = np.arange(0,20,0.01)
 #print(prop_dist)
 
 #Creating co-ordinate grid for plotting wavefunction
-ux = np.linspace(0,1,300)
+ux = np.arange(1,301,1)
+print (ux)
 ux = ux*ps
+print (ux)
 ux = 1000*(ux-np.mean(ux))
-
 print(ux)
+#print(ux)
 
-uy = np.linspace(0,1,300)
+uy = np.arange(1,301,1)
 uy = uy*ps
 uy = 1000*(uy-np.mean(uy))
 
-print(uy)
+#print(uy)
 #Create 2D grid of above vectors
 xx,yy = np.meshgrid(ux,uy)
-print(xx,yy)
+#print(xx,yy)
 
 #Import a test image
 Image = function_greylevel("Image1.jpg")
+print (Image)
 Image = np.resize(Image,(lx,ly))
 Image = -Image
 
-print(Image)
+#print(Image)
 
 
 #Creating complex field by setting amplitude and phase
 Amplitude = np.sqrt(Image)
-print (Amplitude)
+#print (Amplitude)
 #Select one of the options below for phase of wavefunction
 Phase = np.zeros((lx,ly))
 #Phase = 2*np.pi*rand(lx,ly)
